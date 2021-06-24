@@ -1,6 +1,8 @@
 import '../styles/globals.css';
 import { CacheProvider } from '@emotion/react';
 import { cache } from '../lib/emotion';
+import { ThemeProvider } from "theme-ui"
+
 
 type Props = {
   Component: React.VFC;
@@ -11,7 +13,9 @@ type Props = {
 function MyApp({ Component, pageProps }: Props): JSX.Element {
   return (
     <CacheProvider value={cache}>
-      <Component {...pageProps} />
+      <ThemeProvider theme={{}}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </CacheProvider>
   );
 }
