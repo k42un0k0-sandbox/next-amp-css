@@ -8,11 +8,10 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(ctx);
     const page = await ctx.renderPage();
     const emo = extractCritical(page.html);
-    const styles = [
-      //@ts-expect-error aaa
-      ...initialProps.styles,
+    const styles = <>
+      {initialProps.styles}
       <style key="custom" data-emotion-css={emo.ids.join(' ')} dangerouslySetInnerHTML={{ __html: emo.css }} />,
-    ];
+    </>;
     return { ...initialProps, styles };
   }
 
